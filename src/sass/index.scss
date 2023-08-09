@@ -1,2 +1,6 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/container';
+@import './layout/header';
+@import './layout/card-movies';
+@import './components/form';
+@import './utils/variables';

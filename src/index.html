@@ -4,22 +4,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page title</title>
+  <title>Filmoteka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inika:wght@400;700&family=Inter:wght@400;700&family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;700&family=Raleway:wght@700&family=Roboto+Serif:opsz,wght@8..144,100&family=Roboto+Slab:wght@900&family=Roboto:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./sass/index.scss" />
-  <script type="module" src="./index.js"></script>
 </head>
 
 <body>
   <header class="header">
     <div class="container header-container">
       <nav class="nav">
-        <a href="./images/sprite.svg#icon-film" class="mobile-modal"></a>
+        <a href="./index.html" class="link-nav">
+          <svg class="nav-svg" width="24" height="24">
+            <use href="./images/sprite.svg#icon-film"></use>
+          </svg>
+          <span class="title-decstop">Filmoteka</span>
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link menu-line current" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./library.html">my library</a>
+          </li>
+        </ul>
       </nav>
+      <form class="form-group js-movies-form" action="submit">
+        <div class="form-container">
+          <input class="form-input" type="text" name="query" placeholder="Movie search" />
+          <button class="form-btn-search is-visible" type="submit">
+            <svg class="form-icon-search">
+              <use href="./images/sprite.svg#icon-search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <p class="form-error is-hidden">Search result not successful. Enter the correct movie name and</p>
     </div>
-
+    </div>
   </header>
-  <main></main>
+  <main>
+    <section class="container-cards">
+      <div class="container">
+        <div class="container-card-movies wrapper">
+        </div>
+      </div>
+    </section>
+
+  </main>
   <footer></footer>
+
+  <!-- <script type="module" src="./TEST.JS"></script> -->
+
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
