@@ -1,6 +1,7 @@
 import { fetchMovies, fetchGenres, DEFAULT_PAGE, resetPage, nextPage } from './js/movie-API'
 
-const error = document.querySelector('form-error')
+const notification = document.querySelector('.form-error')
+const btnSearch = document.querySelector('.form-btn-search')
 const formBoxes = document.querySelector('.js-movies-form')
 const containerCardMovies = document.querySelector('.container-card-movies')
 formBoxes.addEventListener('submit', onSearch)
@@ -13,8 +14,14 @@ function onSearch(e) {
   e.preventDefault()
   movieName = e.currentTarget.elements.query.value;
 
+  resetPage()
+  notification.classList.remove("is-visible");
+  btnSearch.classList.remove('is-hidden');
+  clearCard()
+
   if (movieName === "") {
-    error.classList.remove('is-hidden')
+    notification.classList.add("is-visible");
+    btnSearch.classList.add('is-hidden');
   }
   resetPage()
   fetchMovies(movieName)
@@ -52,3 +59,31 @@ function renderGenreMovies(genres_ids) {
     return genre.name
   }).join(', ')
 }
+
+function clearCard() {
+  containerCardMovies.innerHTML = '';
+}
+
+// 2 открытия ресурса при прокрутки страницы
+const options = {
+  rootMargin: "200px",
+  threshold: 0.5,
+};
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { // если сейчас ЕЛЕМЕНТ вошел во вьюпорт
+      console.log("Intersecting");
+      if (!movieName) {
+        return
+      }
+      fetchMovies(movieName)
+        .then(({ movies }) => {
+          containerCardMovies.insertAdjacentHTML('beforeend', createMarkupMovies(movies))
+        })
+    }
+  }
+  )
+}, options);
+
+observer.observe(document.querySelector('.scroll-guard'))

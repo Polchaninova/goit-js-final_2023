@@ -18,13 +18,13 @@ function fetchMovies(movieName) {
       return resp.data
     })
     .then(data => {
-      page += 1;
+      nextPage()
       return {
         movies: data.results,
       }
     })
 }
-
+// Делаем запрос пользователя  данным generes
 function fetchGenres() {
   const options = {
     method: 'GET',

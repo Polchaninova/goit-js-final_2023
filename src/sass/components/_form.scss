@@ -29,7 +29,14 @@
   font-size: 14px;
 }
 
-.form-btn-search.is-visible {
+.form-icon-search {
+  width: 12px;
+  height: 12px;
+}
+
+.form-btn-search {
+  visibility: visible;
+
   position: absolute;
   right: 0;
   bottom: 6px;
@@ -42,21 +49,18 @@
   padding-left: 35px;
 }
 
-.form-icon-search {
-  width: 12px;
-  height: 12px;
-}
-
-.form-error.is-hidden {
+.form-btn-search.is-hidden {
   visibility: hidden
 }
 
 .form-error {
-  margin-top: 16px;
-  padding-bottom: 44px;
+  visibility: hidden
+}
 
-  text-align: left;
+.form-error.is-visible {
+  visibility: visible;
   color: #FF001B;
+  text-align: center;
   font-size: 14px;
   font-weight: 400;
 }
