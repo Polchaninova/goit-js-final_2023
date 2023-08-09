@@ -1,19 +1,11 @@
-import { fetchGenres, fetchMovies } from "./js/movie-API"
+import { fetchMovies, fetchGenres, DEFAULT_PAGE, resetPage, nextPage } from './js/movie-API'
 
 const error = document.querySelector('form-error')
 const formBoxes = document.querySelector('.js-movies-form')
 const containerCardMovies = document.querySelector('.container-card-movies')
 formBoxes.addEventListener('submit', onSearch)
-
-// let movieName = '';
-// const DEFAULT_PAGE = 1
-// let page = DEFAULT_PAGE;
+let movieName = '';
 let genres = []
-
-const resetPage = () => {
-  page = DEFAULT_PAGE;
-};
-
 
 
 
@@ -28,15 +20,12 @@ function onSearch(e) {
   fetchMovies(movieName)
     .then(({ movies }) => {
       containerCardMovies.innerHTML = createMarkupMovies(movies)
-      // renderGenre(16)
     })
 }
 fetchGenres()
   .then((currentGenres) => {
     genres = currentGenres;
-  }
-
-  )
+  })
 
 
 function createMarkupMovies(movies) {
@@ -56,6 +45,7 @@ function createMarkupMovies(movies) {
       </div>`
     }).join('')
 }
+
 function renderGenreMovies(genres_ids) {
   return genres_ids.map((genreId) => {
     const genre = genres.find(item => item.id == genreId)

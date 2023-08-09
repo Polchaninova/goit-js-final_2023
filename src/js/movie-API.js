@@ -1,10 +1,17 @@
 import axios from 'axios';
-let movieName = '';
+
 const DEFAULT_PAGE = 1
 let page = DEFAULT_PAGE;
 
+const resetPage = () => {
+  page = DEFAULT_PAGE;
+};
+
+const nextPage = () => {
+  page += 1
+}
 // Делаем запрос пользователя с данным ID
-function fetchMovies() {
+function fetchMovies(movieName) {
   return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a21478d07c84130f2e779172e3fa2211&include_adult=false&page=${page}&query=${movieName}`)
     // обработка успешного запроса
     .then(resp => {
@@ -33,4 +40,4 @@ function fetchGenres() {
       return movieGenre.genres;
     })
 }
-export { fetchMovies, fetchGenres }
+export { fetchMovies, fetchGenres, page, DEFAULT_PAGE, resetPage, nextPage }
