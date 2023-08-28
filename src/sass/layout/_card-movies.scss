@@ -10,10 +10,13 @@ container-cards {}
   text-transform: uppercase;
 }
 
+.card-text {
+  width: 280px;
+}
+
 .text,
-.text-d{
-  // display: inline-block;
-  color: #FF6B08;
+.text-d {
+  // color: #FF6B08;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -49,6 +52,8 @@ container-cards {}
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 32px;
     grid-column-gap: 32px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .card {
@@ -61,6 +66,9 @@ container-cards {}
     max-width: 100%;
   }
 
+  .card-text {
+    width: 336px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -73,6 +81,10 @@ container-cards {}
     width: 394px;
     height: 574px;
     max-width: 100%;
+  }
+
+  .card-text {
+    width: 100%;
   }
 
   .title {

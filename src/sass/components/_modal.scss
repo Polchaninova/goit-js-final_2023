@@ -1,0 +1,288 @@
+.modal {
+  min-width: 100%;
+  width: 280px;
+  height: auto;
+  padding: 48px 20px 40px 20px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-container {
+  overflow-y: auto;
+  height: 90vh;
+}
+
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+  width: 24px;
+  /* ширина для вертикального скролла */
+  height: 8px;
+  /* высота для горизонтального скролла */
+  background-color: #143861;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: #843465;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #f3faf7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #253861;
+}
+
+::-webkit-scrollbar {
+  /* webkit */
+  width: 0;
+  height: 0;
+}
+
+.modal-btn-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+}
+
+.close:before,
+.close:after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 2px;
+  background: #000;
+}
+
+.close:before {
+  webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close:after {
+  webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.modal-img {
+  width: 240px;
+  height: 357px;
+  border-radius: 5px;
+}
+
+.is-hide {
+  display: none !important;
+}
+
+.modal-title {
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  color: #000;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+td {
+  vertical-align: top;
+}
+
+.modal-list {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title-item {
+  width: 105px;
+}
+
+.modal-name {
+  color: #8C8C8C;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+
+}
+
+.modal-name:not(:last-of-type) {
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.modal-vote_average {
+  padding: 1px 10px;
+  border-radius: 5px;
+  background: #FF6B01;
+  color: #FFF;
+
+}
+
+.modal-value {
+  color: #000;
+}
+
+.table-value {
+  float: left;
+  display: inline-block;
+  margin-left: 5px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 7px;
+  }
+}
+
+.modal-sub-title {
+  margin-bottom: 8px;
+  color: #000;
+  line-height: 16px;
+}
+
+.modal-description-film {
+  height: 136px;
+  overflow-y: auto;
+
+  margin-bottom: 20px;
+
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.btn-margin:not(:last-of-type) {
+  margin-right: 20px;
+}
+
+.btn-modal {
+  min-width: 110px;
+  padding: 6px 27px;
+
+  color: #000;
+  border: 1px solid #000;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #FFF;
+  }
+}
+
+.modal-c-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 480px) {
+  .modal {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 40px 70px 40px 40px;
+    width: 704px;
+    height: 552px;
+  }
+
+  .modal-container {
+    display: flex;
+    // justify-content: space-between;
+  }
+
+  .content {
+    margin-left: 60px;
+  }
+
+  .modal-description-film {
+    height: 236px;
+    // width: 264px;
+
+  }
+
+  .modal-img {
+    width: 264px;
+    height: 373.551px;
+  }
+
+  .title-item {
+    width: 70px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+    margin-top: 0;
+  }
+
+  .table-value {
+    margin-left: 40px;
+
+  }
+
+  .btn-modal {
+    min-width: 125px;
+    padding: 14px 9px;
+  }
+
+  .modal-c-btn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .btn-margin:not(:last-of-type) {
+    margin-right: 16px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .modal {
+    padding: 40px 12px;
+    width: 806px;
+    height: 558px;
+  }
+
+  .btn-modal {
+    min-width: 136px;
+  }
+
+  .modal-img {
+    width: 375px;
+    height: 478px;
+  }
+
+  .modal-title {
+    font-size: 30px;
+  }
+
+  .content {
+    margin-left: 16px;
+  }
+
+  .modal-description-film {
+    height: 160px;
+  }
+}

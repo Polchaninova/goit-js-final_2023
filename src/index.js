@@ -1,85 +1,77 @@
-import { fetchMovies, fetchGenres, DEFAULT_PAGE, resetPage, nextPage } from './js/movie-API'
+import { findInfoForMovie, findTrendInfoForMovie, loadTrending, searchMovies } from './js/findTrendInfo'
+import { createModal } from './js/modalRender'
+import { fetchMovies, resetPage } from './js/movie-API'
+import { refs } from './js/refs'
+import { createMarkupMovies } from './js/renderMarkup'
+import { hideLoader, removeNotification, showLoader, showNotification } from './js/showLoader'
 
-const notification = document.querySelector('.form-error')
-const btnSearch = document.querySelector('.form-btn-search')
-const formBoxes = document.querySelector('.js-movies-form')
-const containerCardMovies = document.querySelector('.container-card-movies')
-formBoxes.addEventListener('submit', onSearch)
+
+refs.containerCardMovies.addEventListener('click', onClickCard)
 let movieName = '';
-let genres = []
 
+refs.formBoxes.addEventListener('submit', onSearch)
 
-
-function onSearch(e) {
+window.onload = async function () { //при загрузке страницы запустить сткрипт window.onload = вызов ф-и
+  showLoader()
+  const trendingMovies = await loadTrending()
+  hideLoader()
+  refs.containerCardMovies.innerHTML = await createMarkupMovies(trendingMovies);
+}
+async function onSearch(e) {
   e.preventDefault()
   movieName = e.currentTarget.elements.query.value;
 
   resetPage()
-  notification.classList.remove("is-visible");
-  btnSearch.classList.remove('is-hidden');
+  removeNotification()
   clearCard()
 
   if (movieName === "") {
-    notification.classList.add("is-visible");
-    btnSearch.classList.add('is-hidden');
+    showNotification()
   }
   resetPage()
-  fetchMovies(movieName)
-    .then(({ movies }) => {
-      containerCardMovies.innerHTML = createMarkupMovies(movies)
+  showLoader()
+  searchMovies(movieName)
+    .then(async (movies) => {
+      refs.containerCardMovies.innerHTML = await createMarkupMovies(movies)
     })
-}
-fetchGenres()
-  .then((currentGenres) => {
-    genres = currentGenres;
-  })
-
-
-function createMarkupMovies(movies) {
-  return movies.map(
-    ({ poster_path, title, genre_ids, release_date }) => {
-
-      const UrlImg = poster_path// добавить заглушку если нет изображения!
-        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-        : 'https://placehold.co/600x800'
-
-      return `<div class = "card">
-        <img class = "img" src = "${UrlImg}" alt="${title}">
-      <h2 class = "title" >${title}</h2>
-       <span class="text">${renderGenreMovies(genre_ids)}</span>
-       <span class="text-d">|</span>
-       <span class="text-d">${release_date.slice(0, 4)}</span>
-      </div>`
-    }).join('')
+    .finally(hideLoader)
 }
 
-function renderGenreMovies(genres_ids) {
-  return genres_ids.map((genreId) => {
-    const genre = genres.find(item => item.id == genreId)
-    return genre.name
-  }).join(', ')
+function onClickCard(e) {
+  e.preventDefault()
+  if (e.target.classList.contains('js-info')) {
+    const { id } = e.target.closest('[data-id]').dataset;
+
+    let movie = findTrendInfoForMovie(Number(id));
+    if (movie) {
+      createModal(movie);
+    } else {
+      movie = findInfoForMovie(Number(id));
+      console.log(movie);
+      createModal(movie);
+    }
+  }
 }
 
 function clearCard() {
-  containerCardMovies.innerHTML = '';
+  refs.containerCardMovies.innerHTML = '';
 }
-
-// 2 открытия ресурса при прокрутки страницы
+//2 открытия ресурса при прокрутки страницы
 const options = {
   rootMargin: "200px",
   threshold: 0.5,
 };
 const observer = new IntersectionObserver(entries => {
 
-  entries.forEach(entry => {
+entries.forEach(entry => {
     if (entry.isIntersecting) { // если сейчас ЕЛЕМЕНТ вошел во вьюпорт
       console.log("Intersecting");
       if (!movieName) {
         return
       }
       fetchMovies(movieName)
-        .then(({ movies }) => {
-          containerCardMovies.insertAdjacentHTML('beforeend', createMarkupMovies(movies))
+        .then(async ({ movies }) => {
+            refs.containerCardMovies.insertAdjacentHTML('beforeend', createMarkupMovies(movies))
         })
     }
   }
@@ -87,3 +79,14 @@ const observer = new IntersectionObserver(entries => {
 }, options);
 
 observer.observe(document.querySelector('.scroll-guard'))
+
+
+
+
+// (await Promise.all(movie.map(
+//   async ({ poster_path, title, genre_ids, vote_average, vote_count, popularity, original_title, overview }) => {
+
+//     const UrlImg = poster_path// добавить заглушку если нет изображения!
+//       ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+//       : 'https://placehold.co/600x800'ret
+

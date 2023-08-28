@@ -1,5 +1,12 @@
 @import './base/common';
-@import './utils/variables';
 @import './base/container';
-@import './layout/library-header';
+
 @import './components/btn-multiple';
+@import './components/modal';
+@import './components/loader';
+
+@import './layout/library-header';
+@import './layout/footer';
+@import './layout/card-movies';
+
+@import './utils/variables';

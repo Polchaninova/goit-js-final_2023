@@ -1,51 +1,27 @@
-.multiple-container {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-filter {
-  padding: 14px 36px;
+.btn-multiple {
+  display: block;
   border-radius: 5px;
-
-  color: #FFF;
   text-align: center;
 
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
+
   text-transform: uppercase;
-  border: 1px solid #FFF;
   background-color: transparent;
   transition: background-color 250ms linear, border 250ms linear;
 
   &:hover,
   &:focus,
   &:active {
-    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.60));
-
     border: 1px solid #FF6B01;
     background-color: #FF6B01;
   }
 }
 
-.btn-queue {
-  padding: 14px 45px;
-}
-
-
-.btn-watched:not(:last-of-type) {
-  margin-right: 20px;
-}
-
 @media screen and (min-width: 480px) {}
 
-@media screen and (min-width: 768px) {
-  .btn-watched:not(:last-of-type) {
-    margin-right: 32px;
-  }
-}
+@media screen and (min-width: 768px) {}
 
 @media screen and (min-width: 1200px) {
   .btn-watched:not(:last-of-type) {
