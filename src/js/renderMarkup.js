@@ -6,7 +6,7 @@ export async function createMarkupMovies(movies) {
 
       const UrlImg = poster_path// добавить заглушку если нет изображения!
         ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-        : 'https://placehold.co/600x800'
+        : 'https://placehold.co/500x750'
 
       return `<div data-id='${id}' class="js-card flex">
        <img class = "img js-info" src = "${UrlImg}" alt="${title}">

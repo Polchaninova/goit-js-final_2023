@@ -1,3 +1,4 @@
+import { spread } from "axios";
 import { fetchMovies, fetchTrending } from "./movie-API";
 
 let moviesWithMoreInfo = []
@@ -13,12 +14,16 @@ function loadTrending() {
 }
 function searchMovies(movieName) {
   return fetchMovies(movieName)
-    .then(async ({ movies }) => {
-      moviesWithMoreInfo = movies;
-      return moviesWithMoreInfo
+    .then(async ({ movies, page }) => {
+      if (page === 1) {
+        moviesWithMoreInfo = movies;
+      }
+      else {
+        moviesWithMoreInfo.push(...movies)
+      }
+      return movies
     })
 }
-
 
 function findTrendInfoForMovie(idMovie) {
   return trendingMoviesWithMoreInfo.find(({ id }) => id === idMovie)

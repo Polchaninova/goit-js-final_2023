@@ -1,8 +1,5 @@
-container-cards {}
-
 .title {
   margin-top: 10px;
-
   color: #000;
   font-size: 12px;
   font-weight: 500;
@@ -16,15 +13,10 @@ container-cards {}
 
 .text,
 .text-d {
-  // color: #FF6B08;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
 }
-
-// .text:not(:first-of-type) {
-//   margin-left: 4px;
-// }
 
 .wrapper {
   padding-top: 20px;
@@ -40,8 +32,8 @@ container-cards {}
 }
 
 .img {
-  width: 280px;
-  height: 398px;
+  // width: 280px;
+  // height: 398px;
   max-width: 100%;
   border-radius: 5px;
 }
@@ -61,8 +53,8 @@ container-cards {}
   }
 
   .img {
-    width: 336px;
-    height: 455px;
+    // width: 336px;
+    // height: 455px;
     max-width: 100%;
   }
 
@@ -78,8 +70,8 @@ container-cards {}
   }
 
   .img {
-    width: 394px;
-    height: 574px;
+    // width: 394px;
+    // height: 574px;
     max-width: 100%;
   }
 

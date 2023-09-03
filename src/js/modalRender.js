@@ -7,6 +7,10 @@ import { closeModal } from './closeModal';
 import { refs } from './refs'
 
 async function createModal(movie) {
+
+  const urlImg = movie.poster_path// добавить заглушку если нет изображения!
+    ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    : 'https://placehold.co/500x750'
   const instance = basicLightbox.create(
     `<div class="modal" data-id="${movie?.id}">
     <button class="modal-btn-close">
@@ -14,7 +18,7 @@ async function createModal(movie) {
     </button>
 <div class="modal-container">
     <div class="container-img">
-      <img class="modal-img" src="${`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}" alt="${movie.title}">
+      <img class="modal-img" src="${urlImg}" alt="${movie.title}">
     </div>
     <div class="content">
       <h2 class="modal-title">${movie.title}</h2>

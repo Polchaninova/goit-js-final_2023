@@ -44,6 +44,7 @@ function fetchMovies(movieName) {
       nextPage()
       return {
         movies: data.results,
+        page: data.page
       }
     })
 }

@@ -33,6 +33,7 @@ async function onSearch(e) {
   searchMovies(movieName)
     .then(async (movies) => {
       refs.containerCardMovies.innerHTML = await createMarkupMovies(movies)
+      console.log(movies);
     })
     .finally(hideLoader)
 }
@@ -63,15 +64,15 @@ const options = {
 };
 const observer = new IntersectionObserver(entries => {
 
-entries.forEach(entry => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) { // если сейчас ЕЛЕМЕНТ вошел во вьюпорт
       console.log("Intersecting");
       if (!movieName) {
         return
       }
-      fetchMovies(movieName)
-        .then(async ({ movies }) => {
-            refs.containerCardMovies.insertAdjacentHTML('beforeend', createMarkupMovies(movies))
+      searchMovies(movieName)
+        .then(async (movies) => {
+          refs.containerCardMovies.insertAdjacentHTML('beforeend', await createMarkupMovies(movies))
         })
     }
   }
